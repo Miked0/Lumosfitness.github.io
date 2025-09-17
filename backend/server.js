@@ -288,3 +288,14 @@ app.listen(PORT, () => {
 
 module.exports = app;
 
+const path = require('path');
+
+// Ao final das definições de rotas da API:
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Para qualquer rota não-API, retorne o index.html
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  }
+});
