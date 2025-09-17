@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumos Moda Fitness - Luz que inspira movimento</title>
+    <meta name="description" content="Criamos peças que acompanham mulheres reais na rotina, no treino e na vida. Descubra a qualidade brasileira.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-logo">
+                    <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/aea41dff-61eb-4291-9db8-303a1f863392.png" alt="Lumos Moda Fitness" class="logo">
+                </div>
+                
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#produtos" class="nav-link">Produtos</a></li>
+                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Buscar produtos..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <button class="cart-btn" id="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                    <button class="admin-btn" id="admin-btn">
+                        <i class="fas fa-user-cog"></i>
+                    </button>
+                </div>
+
+                <button class="nav-toggle" id="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Luz que inspira movimento</h1>
+                <p class="hero-subtitle">Criamos peças que acompanham mulheres reais na rotina, no treino e na vida</p>
+                <button class="btn btn--primary btn--lg hero-cta">Descobrir Coleção</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/62d0ee5a-12b1-4b25-99b4-93e871d22ac2.png" alt="Mulher exercitando">
+            </div>
+        </section>
+
+        <!-- Produtos Section -->
+        <section id="produtos" class="produtos-section">
+            <div class="container">
+                <h2 class="section-title">Produtos em Destaque</h2>
+                
+                <!-- Filtros -->
+                <div class="filters">
+                    <button class="filter-btn active" data-category="todos">Todos</button>
+                    <button class="filter-btn" data-category="Leggings">Leggings</button>
+                    <button class="filter-btn" data-category="Tops">Tops</button>
+                    <button class="filter-btn" data-category="Conjuntos">Conjuntos</button>
+                    <button class="filter-btn" data-category="Shorts">Shorts</button>
+                    <button class="filter-btn" data-category="Calças">Calças</button>
+                </div>
+
+                <!-- Grid de Produtos -->
+                <div class="produtos-grid" id="produtos-grid">
+                    <!-- Produtos serão carregados via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre" class="sobre-section">
+            <div class="container">
+                <div class="sobre-content">
+                    <div class="sobre-text">
+                        <h2 class="section-title">Sobre a Lumos</h2>
+                        <p>Criar roupas que acompanham mulheres reais em todos os momentos da vida - do treino mais intenso ao dia a dia corrido, sempre com o toque especial do design brasileiro.</p>
+                        
+                        <div class="linhas-exclusivas">
+                            <h3>Linhas Exclusivas</h3>
+                            <ul>
+                                <li><strong>Active Power:</strong> Alta performance para treinos intensos</li>
+                                <li><strong>Athleisure Chic:</strong> Estilo e conforto para o dia a dia</li>
+                                <li><strong>Gym Essentials:</strong> Básicos essenciais para todas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sobre-image">
+                        <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/190da8ec-50c9-4a0e-89a4-3cc501ad0472.png" alt="Sobre a Lumos">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diferenciais Section -->
+        <section class="diferenciais-section">
+            <div class="container">
+                <h2 class="section-title">Nossos Diferenciais</h2>
+                <div class="diferenciais-grid" id="diferenciais-grid">
+                    <!-- Diferenciais serão carregados via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Depoimentos Section -->
+        <section class="depoimentos-section">
+            <div class="container">
+                <h2 class="section-title">O que dizem nossas clientes</h2>
+                <div class="depoimentos-grid" id="depoimentos-grid">
+                    <!-- Depoimentos serão carregados via JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#" target="_blank">Política de Privacidade</a></li>
+                        <li><a href="#" target="_blank">Termos de Uso</a></li>
+                        <li><a href="#contato">Fale Conosco</a></li>
+                        <li><a href="#" target="_blank">Trocas e Devoluções</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Receba novidades e promoções exclusivas</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Seu e-mail" class="form-control">
+                        <button type="submit" class="btn btn--primary">Inscrever</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lumos Moda Fitness. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modais -->
+    <!-- Modal Produto -->
+    <div class="modal hidden" id="produto-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body" id="produto-modal-body">
+                <!-- Conteúdo do produto será inserido aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Carrinho -->
+    <div class="modal hidden" id="cart-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h3>Carrinho de Compras</h3>
+            </div>
+            <div class="modal-body" id="cart-modal-body">
+                <!-- Itens do carrinho serão inseridos aqui -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="continue-shopping">Continuar Comprando</button>
+                <button class="btn btn--primary" id="checkout-btn">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Checkout -->
+    <div class="modal hidden" id="checkout-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-large">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h3>Finalizar Compra</h3>
+            </div>
+            <div class="modal-body">
+                <form id="checkout-form">
+                    <div class="checkout-sections">
+                        <div class="checkout-section">
+                            <h4>Dados Pessoais</h4>
+                            <div class="form-group">
+                                <label class="form-label">Nome Completo</label>
+                                <input type="text" name="nome" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">E-mail</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Telefone</label>
+                                <input type="tel" name="telefone" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="checkout-section">
+                            <h4>Endereço de Entrega</h4>
+                            <div class="form-group">
+                                <label class="form-label">CEP</label>
+                                <input type="text" name="cep" class="form-control" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Cidade</label>
+                                    <input type="text" name="cidade" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">UF</label>
+                                    <select name="estado" class="form-control" required>
+                                        <option value="">Selecione</option>
+                                        <option value="SP">SP</option>
+                                        <option value="RJ">RJ</option>
+                                        <option value="MG">MG</option>
+                                        <option value="RS">RS</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkout-section">
+                            <h4>Forma de Pagamento</h4>
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="pagamento" value="cartao" checked>
+                                    <span>Cartão de Crédito</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="pagamento" value="pix">
+                                    <span>PIX</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="pagamento" value="boleto">
+                                    <span>Boleto</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-summary">
+                        <h4>Resumo do Pedido</h4>
+                        <div id="checkout-summary-content"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="back-to-cart">Voltar ao Carrinho</button>
+                <button class="btn btn--primary" id="confirm-order">Confirmar Pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Admin -->
+    <div class="modal hidden" id="admin-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-large">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h3>Painel Administrativo</h3>
+            </div>
+            <div class="modal-body">
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="produtos">Produtos</button>
+                    <button class="admin-tab" data-tab="vendas">Relatório de Vendas</button>
+                </div>
+                
+                <div class="admin-content">
+                    <div class="admin-panel active" id="admin-produtos">
+                        <h4>Gerenciar Produtos</h4>
+                        <button class="btn btn--primary" id="add-product-btn">Adicionar Produto</button>
+                        <div id="admin-produtos-list"></div>
+                    </div>
+                    
+                    <div class="admin-panel" id="admin-vendas">
+                        <h4>Relatório de Vendas</h4>
+                        <div id="sales-report"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
