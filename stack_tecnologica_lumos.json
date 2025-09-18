@@ -1,0 +1,74 @@
+{
+  "frontend": {
+    "framework_principal": "Next.js 14",
+    "linguagem": "TypeScript",
+    "bibliotecas_ui": [
+      "React 18",
+      "Tailwind CSS",
+      "Framer Motion (animações)",
+      "React Hook Form (formulários)",
+      "Zod (validação)"
+    ],
+    "ferramentas_desenvolvimento": [
+      "ESLint",
+      "Prettier",
+      "Husky (git hooks)"
+    ],
+    "hospedagem": "Vercel"
+  },
+  "backend": {
+    "runtime": "Node.js 18+",
+    "framework": "Express.js",
+    "linguagem": "TypeScript",
+    "banco_dados": {
+      "principal": "PostgreSQL",
+      "cache": "Redis",
+      "orm": "Prisma"
+    },
+    "autenticacao": "JWT + bcrypt",
+    "hospedagem": "AWS EC2 + RDS"
+  },
+  "integracoes": {
+    "pagamento": {
+      "gateway": "Mercado Pago API",
+      "metodos": [
+        "PIX",
+        "Cartão de Crédito",
+        "Boleto"
+      ],
+      "webhook": "Notificações automáticas"
+    },
+    "erp": {
+      "sistema": "Omie ERP",
+      "funcionalidades": [
+        "Gestão de estoque",
+        "Controle financeiro",
+        "Emissão de NF-e",
+        "Relatórios gerenciais"
+      ],
+      "api_tipo": "SOAP/JSON"
+    },
+    "logistica": {
+      "correios": "API oficial dos Correios",
+      "transportadoras": [
+        "Loggi",
+        "Frenet"
+      ],
+      "calculo_frete": "Comparação automática",
+      "rastreamento": "Integração unificada"
+    }
+  },
+  "infraestrutura": {
+    "cdn": "Cloudflare",
+    "armazenamento": "AWS S3 (imagens)",
+    "monitoramento": "Datadog",
+    "ci_cd": "GitHub Actions",
+    "ssl": "Let's Encrypt"
+  },
+  "ferramentas_gestao": {
+    "projeto": "Jira",
+    "comunicacao": "Slack",
+    "versionamento": "Git + GitHub",
+    "documentacao": "Notion"
+  }
+}

@@ -1,0 +1,29 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copiar package.json e package-lock.json
+COPY package*.json ./
+
+# Instalar dependências
+RUN npm ci --only=production
+
+# Copiar código fonte
+COPY . .
+
+# Criar usuário não-root
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S lumos -u 1001
+
+# Alterar ownership
+RUN chown -R lumos:nodejs /app
+USER lumos
+
+# Expor porta
+EXPOSE 3001
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3   CMD curl -f http://localhost:3001/api/health || exit 1
+
+# Comando para iniciar
+CMD ["npm", "start"]

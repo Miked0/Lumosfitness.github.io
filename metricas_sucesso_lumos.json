@@ -1,0 +1,20 @@
+{
+  "tecnicas": {
+    "performance": {
+      "page_speed": "≥ 90 (Mobile/Desktop)",
+      "tempo_carregamento": "≤ 2 segundos",
+      "uptime": "≥ 99.5%"
+    },
+    "conversao": {
+      "taxa_checkout": "≥ 3%",
+      "carrinho_abandonado": "≤ 70%",
+      "tempo_checkout": "≤ 3 minutos"
+    }
+  },
+  "negocio": {
+    "vendas": "10 vendas em 7 dias pós-lançamento",
+    "trafego": "1000 visitantes únicos/mês",
+    "engajamento": "500 novos seguidores Instagram",
+    "satisfacao": "NPS ≥ 70"
+  }
+}

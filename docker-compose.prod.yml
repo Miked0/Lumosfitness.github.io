@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # Backend API
+  lumos-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://lumos_user:${DB_PASSWORD}@postgres:5432/lumos_db
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET}
+      - MP_ACCESS_TOKEN=${MP_ACCESS_TOKEN}
+      - OMIE_APP_KEY=${OMIE_APP_KEY}
+      - OMIE_APP_SECRET=${OMIE_APP_SECRET}
+    depends_on:
+      - postgres
+      - redis
+    restart: always
+    networks:
+      - lumos-network
+
+  # Frontend Next.js (se não usar Vercel)
+  lumos-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=https://api.lumosfitness.com
+      - NEXT_PUBLIC_MP_PUBLIC_KEY=${MP_PUBLIC_KEY}
+    restart: always
+    networks:
+      - lumos-network
+
+  # Banco PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=lumos_db
+      - POSTGRES_USER=lumos_user
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - lumos-network
+
+  # Redis para cache
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: always
+    networks:
+      - lumos-network
+
+  # Nginx como reverse proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/ssl/certs
+    depends_on:
+      - lumos-backend
+      - lumos-frontend
+    restart: always
+    networks:
+      - lumos-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  lumos-network:
+    driver: bridge

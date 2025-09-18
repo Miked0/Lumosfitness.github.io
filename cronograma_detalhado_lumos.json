@@ -1,0 +1,97 @@
+{
+  "semana_1": {
+    "dias": "1-5",
+    "fase": "Planejamento",
+    "status": "Concluído",
+    "atividades": [
+      "Análise técnica do front-end atual",
+      "Definição de integrações (Omie + Mercado Pago)",
+      "Mapeamento de riscos do projeto",
+      "Contratação de serviços essenciais",
+      "Criação da documentação inicial"
+    ],
+    "entregaveis": [
+      "Documento de arquitetura",
+      "Contratos de serviços assinados",
+      "Repositório Git configurado",
+      "Ambiente de desenvolvimento"
+    ]
+  },
+  "semana_2": {
+    "dias": "6-12",
+    "fase": "Design + Front-End Setup",
+    "responsaveis": [
+      "Ygor",
+      "Fernanda",
+      "Michael"
+    ],
+    "atividades": [
+      "Refinamento da identidade visual",
+      "Criação do design system",
+      "Início da refatoração do código atual",
+      "Setup do ambiente de desenvolvimento",
+      "Configuração do Next.js + TypeScript"
+    ],
+    "entregaveis": [
+      "Manual de identidade visual",
+      "Design system documentado",
+      "Estrutura Next.js configurada",
+      "Componentes base criados"
+    ]
+  },
+  "semana_3_4": {
+    "dias": "13-26",
+    "fase": "Desenvolvimento Core",
+    "foco": "APIs e Interface Principal",
+    "atividades": [
+      "Desenvolvimento das APIs de produtos",
+      "Sistema de carrinho de compras",
+      "Interface de checkout",
+      "Integração inicial com Omie ERP",
+      "Testes unitários das funcionalidades"
+    ],
+    "marcos_importantes": [
+      "API de produtos funcionando",
+      "Carrinho persistente implementado",
+      "Checkout básico operacional",
+      "Sincronização com ERP testada"
+    ]
+  },
+  "semana_5_6": {
+    "dias": "27-40",
+    "fase": "Integrações + Testes",
+    "complexidade": "Alta",
+    "atividades": [
+      "Integração Mercado Pago (PIX + Cartão)",
+      "Sistema de cálculo de frete",
+      "Painel administrativo básico",
+      "Testes de ponta a ponta",
+      "Otimização de performance"
+    ],
+    "testes_criticos": [
+      "Fluxo completo de compra",
+      "Processamento de pagamentos",
+      "Cálculo de frete preciso",
+      "Sincronização de estoque"
+    ]
+  },
+  "semana_7": {
+    "dias": "41-45",
+    "fase": "Deploy + Lançamento",
+    "criticidade": "Máxima",
+    "atividades": [
+      "Deploy em produção",
+      "Configuração de monitoramento",
+      "Testes em ambiente real",
+      "Treinamento do cliente",
+      "Go-live supervisionado"
+    ],
+    "checklist_lancamento": [
+      "SSL configurado",
+      "Backup automatizado",
+      "Monitoramento ativo",
+      "DNS propagado",
+      "Equipe de suporte preparada"
+    ]
+  }
+}
