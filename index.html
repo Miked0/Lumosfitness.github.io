@@ -8,6 +8,215 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- ✅ FIREBASE SDK v9+ MODULAR -->
+    <script type="module">
+        // Firebase v9+ modular SDK
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+        import { getDatabase, ref, set, get, push, onValue, serverTimestamp, query, orderByChild } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js';
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js';
+
+        // ✅ Configuração Firebase Lumos Fitness
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJ9_XRz7kL8vN2QgF5MwP3Hx6KjY8ZrTc",
+            authDomain: "lumos-fitness.firebaseapp.com",
+            databaseURL: "https://lumos-fitness-default-rtdb.firebaseio.com/",
+            projectId: "lumos-fitness",
+            storageBucket: "lumos-fitness.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abcdef123456789012345",
+            measurementId: "G-ABC123DEF4"
+        };
+
+        // ✅ Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const analytics = getAnalytics(app);
+
+        console.log('✅ Firebase Lumos inicializado com sucesso - SID');
+
+        // ✅ Tornar disponível globalmente
+        window.firebaseApp = app;
+        window.firebaseDatabase = database;
+        window.firebaseRef = ref;
+        window.firebaseSet = set;
+        window.firebaseGet = get;
+        window.firebasePush = push;
+        window.firebaseOnValue = onValue;
+        window.firebaseServerTimestamp = serverTimestamp;
+        window.firebaseQuery = query;
+        window.firebaseOrderByChild = orderByChild;
+
+        // ✅ Migrar dados para Firebase ao carregar
+        window.addEventListener('load', async () => {
+            await migrarDadosLumosParaFirebase();
+            configurarListenersProdutos();
+            console.log('🚀 Sistema Lumos Firebase ativo - SID');
+        });
+
+        // ✅ Função de migração completa
+        async function migrarDadosLumosParaFirebase() {
+            console.log('🔄 SID: Iniciando migração Lumos para Firebase');
+            
+            try {
+                // Verificar se já existem dados
+                const produtosRef = ref(database, 'produtos');
+                const snapshot = await get(produtosRef);
+                
+                if (!snapshot.exists()) {
+                    console.log('📦 SID: Migrando produtos Lumos para Firebase...');
+                    
+                    // Dados dos produtos Lumos
+                    const produtosLumos = [
+                        {
+                            id: 1,
+                            nome: "Legging High Power Turquesa",
+                            preco: 189.90,
+                            precoOriginal: 239.90,
+                            categoria: "Leggings",
+                            descricao: "Legging de alta compressão com tecnologia dry-fit exclusiva",
+                            tamanhos: ["PP", "P", "M", "G", "GG"],
+                            cores: ["Turquesa", "Preto", "Rosa"],
+                            estoque: 25,
+                            destaque: true,
+                            marca: 'Lumos Fitness',
+                            ativo: true
+                        },
+                        {
+                            id: 2,
+                            nome: "Top Force Preto",
+                            preco: 159.90,
+                            categoria: "Tops",
+                            descricao: "Top esportivo com suporte médio e alças ajustáveis",
+                            tamanhos: ["PP", "P", "M", "G", "GG"],
+                            cores: ["Preto", "Branco", "Rosa"],
+                            estoque: 18,
+                            destaque: false,
+                            marca: 'Lumos Fitness',
+                            ativo: true
+                        },
+                        {
+                            id: 3,
+                            nome: "Conjunto Boss Completo",
+                            preco: 349.90,
+                            precoOriginal: 429.90,
+                            categoria: "Conjuntos",
+                            descricao: "Conjunto legging + top com modelagem exclusiva",
+                            tamanhos: ["PP", "P", "M", "G", "GG"],
+                            cores: ["Preto/Rosa", "Azul/Branco"],
+                            estoque: 12,
+                            destaque: true,
+                            marca: 'Lumos Fitness',
+                            ativo: true
+                        },
+                        {
+                            id: 4,
+                            nome: "Macaquinho Athleisure",
+                            preco: 269.90,
+                            categoria: "Macaquinhos",
+                            descricao: "Peça versátil para treino e uso casual",
+                            tamanhos: ["PP", "P", "M", "G", "GG"],
+                            cores: ["Preto", "Nude", "Verde"],
+                            estoque: 8,
+                            destaque: false,
+                            marca: 'Lumos Fitness',
+                            ativo: true
+                        },
+                        {
+                            id: 5,
+                            nome: "Short Essence Alta Compressão",
+                            preco: 189.90,
+                            categoria: "Shorts",
+                            descricao: "Short com compressão estratégica e bolsos laterais",
+                            tamanhos: ["PP", "P", "M", "G", "GG"],
+                            cores: ["Preto", "Cinza", "Rosa"],
+                            estoque: 20,
+                            destaque: false,
+                            marca: 'Lumos Fitness',
+                            ativo: true
+                        },
+                        {
+                            id: 6,
+                            nome: "Calça Wide Leg Comfort",
+                            preco: 249.90,
+                            categoria: "Calças",
+                            descricao: "Calça confortável para o dia a dia e yoga",
+                            tamanhos: ["PP", "P", "M", "G", "GG"],
+                            cores: ["Preto", "Bege", "Marinho"],
+                            estoque: 15,
+                            destaque: false,
+                            marca: 'Lumos Fitness',
+                            ativo: true
+                        }
+                    ];
+
+                    // Migrar cada produto
+                    for (const produto of produtosLumos) {
+                        const produtoRef = ref(database, `produtos/${produto.id}`);
+                        await set(produtoRef, {
+                            ...produto,
+                            criadoEm: serverTimestamp(),
+                            atualizadoEm: serverTimestamp()
+                        });
+                        console.log(`✅ SID: Produto ${produto.nome} migrado`);
+                    }
+
+                    // Criar configurações da empresa
+                    const configRef = ref(database, 'configuracoes');
+                    await set(configRef, {
+                        empresa: {
+                            nome: "Lumos Moda Fitness",
+                            slogan: "Luz que inspira movimento",
+                            email: "contato@lumosfitness.com",
+                            whatsapp: "(11) 99999-9999",
+                            instagram: "@lumosmodafitness"
+                        },
+                        versao: "1.0.0",
+                        migradoEm: serverTimestamp(),
+                        desenvolvido: "SID - NEW AGE"
+                    });
+
+                    console.log('🎉 SID: Migração Lumos completa - dados no Firebase!');
+                } else {
+                    console.log('✅ SID: Dados já existem no Firebase');
+                }
+            } catch (error) {
+                console.error('❌ SID: Erro na migração:', error);
+            }
+        }
+
+        // ✅ Configurar listeners em tempo real
+        function configurarListenersProdutos() {
+            console.log('🔄 SID: Configurando listeners Firebase');
+            
+            const produtosRef = ref(database, 'produtos');
+            onValue(produtosRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    const produtosFirebase = snapshot.val();
+                    console.log('🔔 SID: Produtos atualizados do Firebase:', Object.keys(produtosFirebase).length);
+                    
+                    // Atualizar appData com dados do Firebase
+                    if (window.appData) {
+                        window.appData.produtos = Object.values(produtosFirebase);
+                        
+                        // Atualizar interface se estiver na página de produtos
+                        if (window.appState && window.appState.currentPage === 'products') {
+                            window.loadAllProducts && window.loadAllProducts();
+                        }
+                        
+                        // Atualizar produtos em destaque na home
+                        if (window.appState && window.appState.currentPage === 'home') {
+                            window.loadFeaturedProducts && window.loadFeaturedProducts();
+                        }
+                    }
+                } else {
+                    console.log('⚠️ SID: Nenhum produto no Firebase');
+                }
+            }, (error) => {
+                console.error('❌ SID: Erro no listener:', error);
+            });
+        }
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -376,6 +585,130 @@
         <div class="loading-spinner"></div>
     </div>
 
+    <!-- ✅ Scripts Firebase integrados -->
     <script src="app.js"></script>
+    
+    <!-- ✅ Script adicional para Firebase -->
+    <script>
+        // ✅ Funções Firebase para app.js
+        window.FirebaseLumos = {
+            // Salvar produto no Firebase
+            async salvarProduto(produto) {
+                console.log('🔄 SID: Salvando produto no Firebase:', produto);
+                try {
+                    const produtoRef = window.firebaseRef(window.firebaseDatabase, `produtos/${produto.id}`);
+                    await window.firebaseSet(produtoRef, {
+                        ...produto,
+                        marca: 'Lumos Fitness',
+                        atualizadoEm: window.firebaseServerTimestamp()
+                    });
+                    console.log('✅ SID: Produto salvo no Firebase!');
+                    return true;
+                } catch (error) {
+                    console.error('❌ SID: Erro ao salvar produto:', error);
+                    return false;
+                }
+            },
+
+            // Salvar carrinho no Firebase
+            async salvarCarrinho(sessionId, carrinho) {
+                console.log('🔄 SID: Salvando carrinho no Firebase:', sessionId);
+                try {
+                    const carrinhoRef = window.firebaseRef(window.firebaseDatabase, `carrinhos/${sessionId}`);
+                    await window.firebaseSet(carrinhoRef, {
+                        ...carrinho,
+                        atualizadoEm: window.firebaseServerTimestamp()
+                    });
+                    console.log('✅ SID: Carrinho salvo no Firebase!');
+                    return true;
+                } catch (error) {
+                    console.error('❌ SID: Erro ao salvar carrinho:', error);
+                    return false;
+                }
+            },
+
+            // Salvar pedido no Firebase
+            async salvarPedido(pedido) {
+                console.log('🔄 SID: Salvando pedido no Firebase:', pedido);
+                try {
+                    const pedidosRef = window.firebaseRef(window.firebaseDatabase, 'pedidos');
+                    const novoPedidoRef = window.firebasePush(pedidosRef);
+                    await window.firebaseSet(novoPedidoRef, {
+                        ...pedido,
+                        id: novoPedidoRef.key,
+                        empresa: 'Lumos Fitness',
+                        criadoEm: window.firebaseServerTimestamp()
+                    });
+                    console.log('✅ SID: Pedido salvo no Firebase!');
+                    return { success: true, id: novoPedidoRef.key };
+                } catch (error) {
+                    console.error('❌ SID: Erro ao salvar pedido:', error);
+                    return { success: false, error: error.message };
+                }
+            },
+
+            // Buscar dados do Firebase
+            async buscarDados(path) {
+                console.log('🔄 SID: Buscando dados:', path);
+                try {
+                    const dataRef = window.firebaseRef(window.firebaseDatabase, path);
+                    const snapshot = await window.firebaseGet(dataRef);
+                    
+                    if (snapshot.exists()) {
+                        console.log('✅ SID: Dados encontrados:', path);
+                        return { success: true, data: snapshot.val() };
+                    } else {
+                        console.log('⚠️ SID: Nenhum dado encontrado:', path);
+                        return { success: true, data: null };
+                    }
+                } catch (error) {
+                    console.error('❌ SID: Erro ao buscar dados:', error);
+                    return { success: false, error: error.message };
+                }
+            }
+        };
+        
+        // ✅ Integração com app.js existente
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 SID: Sistema Lumos com Firebase ativo!');
+            
+            // Interceptar operações do carrinho para salvar no Firebase
+            const originalUpdateCartCount = window.updateCartCount;
+            if (originalUpdateCartCount) {
+                window.updateCartCount = function() {
+                    originalUpdateCartCount();
+                    
+                    // Salvar carrinho no Firebase
+                    const sessionId = 'lumos_session_' + Date.now();
+                    if (window.appState && window.appState.cart) {
+                        window.FirebaseLumos.salvarCarrinho(sessionId, {
+                            itens: window.appState.cart,
+                            total: window.appState.cart.reduce((sum, item) => sum + item.total, 0)
+                        });
+                    }
+                };
+            }
+            
+            // Interceptar checkout para salvar pedidos no Firebase
+            const originalProcessCheckout = window.processCheckout;
+            if (originalProcessCheckout) {
+                window.processCheckout = async function(formData) {
+                    const result = originalProcessCheckout(formData);
+                    
+                    // Salvar pedido no Firebase
+                    if (window.appState && window.appState.cart.length > 0) {
+                        await window.FirebaseLumos.salvarPedido({
+                            cliente: formData,
+                            itens: window.appState.cart,
+                            status: 'pendente',
+                            origem: 'site_lumos'
+                        });
+                    }
+                    
+                    return result;
+                };
+            }
+        });
+    </script>
 </body>
 </html>
